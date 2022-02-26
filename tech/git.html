@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+    <link href="../assets/style.css" rel="stylesheet">
+</head>
+<body style="height:100%">
+<header>
+    <title>Git Important commands</title>
+    <h1>Git Cheat Sheet</h1>
+</header>
+<div class="div_main">
+    <div class="div_left">
+        <h3>Links</h3>
+        <ul style="list-style-type:none;">
+            <li><a href="../index.html">About the author</a></li>
+        </ul>
+        <div class="contact">
+            <ul style="list-style-type:none;">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="https://twitter.com/TanumaP">Twitter</a></li>
+                <li><a href="mailto:tanumapatra21@gmail.com?subject = Coderlingo Feedback&body = Message">Mail</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="div_right">
+        This setup is for mac and other unix based env. Pre-req for this is to have homebrew installed.
+        <h2> Initial setup</h2>
+        <p>As first setup to setup git, set the configs for username and email. Important thing to note about this step is to make sure that there are 3 levels
+        at which the configs can be set: local, global, system.
+        <ul>
+        <li> <b>local:</b> Local configuration values are stored in a file that can be found in the repo's .git directory: .git/config</li>
+        <li> <b>global:</b>applied to an operating system user. Global configuration values are stored in a file that is located in a user's home directory. ~ /.gitconfig</li>
+        <li> <b>system:</b> System-level configuration is applied across an entire machine. This covers all users on an operating system and all repos. The system level configuration file lives in a gitconfig file off the system root path. $(prefix)/etc/gitconfig on unix systems.</li>
+    </ul>
+        <main>
+            <figure>
+                <figcaption>Add username and email to git configs</figcaption>
+                <pre>
+                    <code>
+        git config --global user.email "your_email@example.com"
+        git config --global user.name "name"
+                    </code>
+                </pre>
+            </figure>
+        </main></p>
+        <h4>Setup difftool</h4>
+        This is important because most of the time we prefer GUI for merging diffs. 'git diff' is
+        <main>
+            <figure>
+                <figcaption>Add meld as default diff tool</figcaption>
+                <pre >
+                    <code>
+        brew install --cask meld
+        git config --global merge.tool meld
+        git config --global diff.guitool meld
+        git config --global difftool.prompt false
+        <i>// See diff in application set in difftool from the repository</i>
+        git difftool
+                    </code>
+                </pre>
+            </figure>
+        </main>
+
+        <h4>Commit commands</h4>
+        <main>
+            <figure>
+                <figcaption>Add meld as default diff tool</figcaption>
+                <pre >
+                    <code>
+        <i>// create new branch in local called demo</i>
+        git branch demo
+        <i>// switch to the new branch created</i>
+        git checkout demo
+        <i>// view all branch '-a' for remote too</i>
+        git branch -a
+        <i>// check status of changes made. Lists staged and unstaged changes</i>
+        git status
+        <i>// replace 'file' with '.' to add all files changed</i>
+        git add &ltfile&gt
+        git commit
+
+                    </code>
+                </pre>
+            </figure>
+        </main>
+
+        <h4>Saving diffs</h4>
+        <main>
+            <figure>
+                <figcaption>Git stash</figcaption>
+                <pre>
+                    <code>
+        <i>// suffix '-u' to add untracked files too.
+          // suffix '-a' to add everything including ignored files </i>
+        git stash save "add style to our site"
+        <i> // apply stashed change</i>
+        git stash apply
+        <i> // remove and apply stashed change</i>
+        git stash pop stash@{2}
+        git stash list
+        <i> // '-p' to see complete diff </i>
+        git stash show -p
+        <i>// remove stash</i>
+        git stash drop stash@{1}
+        <i>// clear stash</i>
+        git stash clear
+                    </code>
+                </pre>
+            </figure>
+        </main></p>
+        <!--alias graph='git log --all --decorate --oneline --graph'
+        alias conflict='git diff --name-only --diff-filter=U'
+
+
+        git pull &ltremote&gt
+        : Fetch the specified remote’s copy of the current branch and immediately merge it into the local copy. This is the
+        same as git fetch ＜remote＞ followed by git merge origin/＜current-branch＞.
+        git pull --no-commit &ltremote&gt
+        Similar to the default invocation, fetches the remote content but does not create a new merge commit.
+
+        git commit --amend
+
+        # Edit hello.py and main.py
+        git add hello.py
+        git commit
+        # Realize you forgot to add the changes from main.py
+        git add main.py
+        git commit --amend --no-edit
+        The --no-edit flag will allow you to make the amendment to your commit without changing its commit message. The
+        resulting commit will replace the incomplete one, and it will look like we committed the changes to hello.py and
+        main.py in a single snapshot. --></br>
+        </br>
+        For details of how git works and commands refer <a href="https://www.atlassian.com/git/tutorials/">this. </a>
+        </br>
+        </br>
+        </br>
+    </div>
+
+</div>
+</body>

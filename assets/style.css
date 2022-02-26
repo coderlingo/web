@@ -5,6 +5,9 @@
   border:1px inset;
   margin:5px
 }
+html, body {
+    height:100%;
+}
 h1 {
   display: block;
   font-size: 2em;
@@ -39,3 +42,77 @@ h1 {
     object-position: 50% 50%;
     padding: 50px;
 }
+.contact{
+    position: absolute;
+    bottom: 0px;
+    text-align:center;
+}
+main
+{
+    display: block;
+    width: 50%;
+        min-width: 11em;
+        margin: 0.5em auto;
+}
+figure
+{
+    display:block;
+    margin:1em 0;
+    border:1px solid #ccc;
+    border-radius:3px;
+    background:#eee;
+}
+
+figure figcaption
+{
+    display:block;
+    padding:5px 10px 4px 10px;
+    border-bottom:1px solid #ccc;
+    border-radius:3px 3px 0 0;
+    font-weight:bold;
+    background:#ddd;
+    color:#777;
+}
+
+pre, pre *
+{
+    font:normal normal normal 1em/1.4 monaco, courier, monospace;
+}
+pre
+{
+    font-size:0.8em;
+}
+pre, pre code, pre samp
+{
+    display:block;
+    margin:0;
+    cursor:text;
+}
+pre code, pre samp
+{
+    /* explicit white-space is needed for IE7 */
+    white-space:pre;
+    -moz-tab-size:4;
+    -o-tab-size:4;
+    tab-size:4;
+    overflow-x:auto;
+}
+
+pre b
+{
+    font-weight:normal;
+    color:#039;
+}
+pre u, pre u b
+{
+    text-decoration:none;
+    color:#083;
+}
+pre i, pre i *, pre i * *
+{
+    letter-spacing:-0.1em;
+    text-decoration:none;
+    font-style:normal;
+    color:#c55;
+}
+
