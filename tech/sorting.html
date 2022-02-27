@@ -30,8 +30,8 @@
         <ul>
             <li><a href="#selection">Selection sort</a></li>
             <li><a href="#insertion">Insertion sort</a></li>
-            <li>Counting sort</li>
-            <li>Radix sort</li>
+            <li><a href="#counting">Counting sort</a></li>
+            <li><a href="#radix">Radix sort</a></li>
             <li>Bubble sort</li>
             <li>Merge sort</li>
             <li>Quick sort</li>
@@ -46,7 +46,7 @@
 
         <main>
             <figure>
-                <figcaption>Add username and email to git configs</figcaption>
+                <figcaption>Selection Sort</figcaption>
                 <pre>
                     <code>
         public static void selectionSort(int[] input) {
@@ -80,7 +80,7 @@
 
         <main>
             <figure>
-                <figcaption>Add username and email to git configs</figcaption>
+                <figcaption>Insertion sort</figcaption>
                 <pre>
                     <code>
        public static void insertionSort(int[] input) {
@@ -100,6 +100,94 @@
         Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/InsertionSort.java">here</a>
 
     </div>
+
+    <div id="counting">
+        <h3>Counting Sort</h3>
+        It is a liner time sort algorithm. It is achived by having additional knowledge of the range of the values in the list. We count the number of
+        occurrence of each item and determine the index in the resultant sorted array.
+        <b>Complexity:</b> O(n+k)
+
+        <main>
+            <figure>
+                <figcaption>Counting sort</figcaption>
+                <pre>
+                    <code>
+       public static void countingSort(int[] input, int range) {
+            int[] count = new int[range+1];
+            Arrays.stream(input).forEach(e->count[e]++);
+            for(int i=1;i&lt count.length;i++) {
+                count[i] = count[i-1]+count[i];
+            }
+            Arrays.fill(input,0);
+            for(int i=1;i&lt count.length;i++) {
+                if(count[i]!=count[i-1]) {
+                    for(int j=count[i-1];j&lt count[i];j++) {
+                        input[j] = i;
+                    }
+                }
+            }
+        }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/SelectionSort.java">here</a>
+
+    </div>
+
+        <div id="radix">
+            <h3>Radix Sort</h3>
+            Radix sort uses counting sort as an underlying algorithm. In radix sort we aim to reduce the dependen</br>
+            <b>Complexity:</b> O((n+b)logb k)</br>
+            n-> number of elments in array</br>
+            b-> base of the sort.</br>
+            k->largest element
+            Let there be d digits in input integers. Radix Sort takes O(d*(n+b)) time where b is the base for representing numbers, for example, for the decimal system, b is 10. What is the value of d? If k is the maximum possible value, then d would be O(logb(k)). So overall time complexity is O((n+b) * logb(k)). Which looks more than the time complexity of comparison-based sorting algorithms for a large k. Let us first limit k. Let k <= nc where c is a constant. In that case, the complexity becomes O(nLogb(n)). But it still doesn’t beat comparison-based sorting algorithms.
+            What if we make the value of b larger?. What should be the value of b to make the time complexity linear? If we set b as n, we get the time complexity as O(n). In other words, we can sort an array of integers with a range from 1 to nc if the numbers are represented in base n (or every digit takes log2(n) bits).
+            <main>
+                <figure>
+                    <figcaption>Radix sort</figcaption>
+                    <pre>
+                    <code>
+       public static void countingSort(int[] input, int range, int pow) {
+            int[] count = new int[range];
+            int[] index = new int[range];
+            int[] output = new int[input.length];
+
+            Arrays.stream(input).forEach(e->count[(e/pow)%10]++);
+            index[0] = count[0];
+            for(int i=1;i&lt count.length;i++) {
+                index[i] = index[i-1]+count[i];
+            }
+            for(int i =0;i&lt input.length;i++) {
+                int idx = (input[i]/pow)%10;
+                output[index[idx]-count[idx]] = input[i];
+                count[idx]--;
+            }
+            for(int i = 0;i&lt input.length;i++) {
+                input[i] = output[i];
+            }
+        }
+        public static void radixSort(int[] input) {
+            int n;
+            int max = 0;
+            for(int i=0;i&lt input.length;i++) {
+                max = max>input[i]?max:input[i];
+            }
+            int i =1;
+            while(max!=0) {
+                countingSort(input,10,i);
+                i=i*10;
+                max = max/10;
+            }
+        }
+                    </code>
+                </pre>
+                </figure>
+            </main>
+            Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/RadixSort.java">here</a>
+
+        </div>
 </div>
 </div>
 </body>
