@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body style="height:100%">
+<header>
+    <title> Coderlingo</title>
+    <h1>Sorting techniques</h1>
+</header>
+
+<div class="div_main">
+    <div class="div_left">
+        <h3>Links</h3>
+        <ul style="list-style-type:none;">
+            <li><a href="../index.html">About the Author</a></li>
+        </ul>
+        <div style="position: absolute;
+                bottom: 0px;text-align:center;">
+            <ul style="list-style-type:none;">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="https://twitter.com/TanumaP">Twitter</a></li>
+                <li><a href="mailto:tanumapatra21@gmail.com?subject = Coderlingo Feedback&body = Message">Mail</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="div_right">
+        Following list of techniques:
+        <ul>
+            <li><a href="#selection">Selection sort</a></li>
+            <li><a href="#insertion">Insertion sort</a></li>
+            <li>Counting sort</li>
+            <li>Radix sort</li>
+            <li>Bubble sort</li>
+            <li>Merge sort</li>
+            <li>Quick sort</li>
+            <li>Heap sort</li>
+            <li>Topological sort</li>
+        </ul>
+        <div id="selection"></div>
+     <h3>Selection sort</h3>
+        Selection sort involves finding the smallest/largest element in the array and putting it in its correct position in each iteration. </br>
+        We loop over the index, and over the remaining elements to find one for the index.</br>
+        <b>Complexity:</b> O(n^2)
+
+        <main>
+            <figure>
+                <figcaption>Add username and email to git configs</figcaption>
+                <pre>
+                    <code>
+        public static void selectionSort(int[] input) {
+        for(int i=0;i&lt input.length;i++) {
+            int min = i;
+            <i>// find min in remaining unsorted array</i>
+            for(int j=i+1;j&lt input.length;j++) {
+                if(input[min]&gtinput[j]) {
+                    min = j;
+                }
+            }
+            <i>// swap to put min in correct index</i>
+            if(min!=i) {
+                int temp = input[min];
+                input[min] = input[i];
+                input[i] = temp;
+            }
+        }
+    }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/SelectionSort.java">here</a>
+
+    </div>
+    <div id="insertion">
+
+    </div>
+</div>
+
+</body>
