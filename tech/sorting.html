@@ -38,7 +38,7 @@
             <li>Heap sort</li>
             <li>Topological sort</li>
         </ul>
-        <div id="selection"></div>
+        <div id="selection">
      <h3>Selection sort</h3>
         Selection sort involves finding the smallest/largest element in the array and putting it in its correct position in each iteration. </br>
         We loop over the index, and over the remaining elements to find one for the index.</br>
@@ -74,8 +74,32 @@
 
     </div>
     <div id="insertion">
+        <h3>Insertion sort</h3>
+        Wroks similar to selection sort. But instead of putting an element in correct index in each iteration, it put the element in current index into its right position in partly sorted array </br>
+        <b>Complexity:</b> O(n^2)
+
+        <main>
+            <figure>
+                <figcaption>Add username and email to git configs</figcaption>
+                <pre>
+                    <code>
+       public static void insertionSort(int[] input) {
+            for(int i=1;i&lt input.length;i++) {
+                int val = input[i];
+                int j;
+                for(j=i-1;j &gt=0 && input[j]&gt val;j--) {
+                    input[j+1] = input[j];
+                }
+                input[j+1] = val;
+            }
+        }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/InsertionSort.java">here</a>
 
     </div>
 </div>
-
+</div>
 </body>
