@@ -188,6 +188,40 @@
             Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/RadixSort.java">here</a>
 
         </div>
+        <div id="bubble">
+            <h3>Bubble Sort</h3>
+            <b>Complexity:</b> O(n^2)</br>
+            <main>
+                <figure>
+                    <figcaption>Radix sort</figcaption>
+                    <pre>
+                    <code>
+    public static void bubbleSort(int[] input) {
+        for(int i = 0;i&lt input.length;i++) {
+         <i>// This flag helps to reduce the time. Since if we reach a point where the array is sorted, we dont want to
+            // continue with the iterations and break out of the loop. In bubble sort, if no swaps happen in a pass of the array,
+            // the array is sorted. </i>
+            boolean flag = false;
+            for(int j=0;j&lt input.length-i-1;j++) {
+                if(input[j]>input[j+1]) {
+                    flag = true;
+                    int temp = input[j];
+                    input[j] = input[j+1];
+                    input[j+1] = temp;
+                }
+            }
+            if(!flag){
+                break;
+            }
+        }
+    }
+                    </code>
+                </pre>
+                </figure>
+            </main>
+            Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/BubbleSort.java">here</a>
+
+        </div>
 </div>
 </div>
 </body>
