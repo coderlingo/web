@@ -50,9 +50,9 @@ h1 {
 main
 {
     display: block;
-    width: 50%;
+    width: 80%;
         min-width: 11em;
-        margin: 0.5em auto;
+    margin: 0.5em auto;
 }
 figure
 {
