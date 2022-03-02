@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+    <link href="../assets/style.css" rel="stylesheet">
+    <script src="../assets/menu.js"></script>
+</head>
+<body style="height:100%">
+<header>
+    <title>Binary Search</title>
+    <h1>Binary Search</h1>
+</header>
+<div class="div_main">
+    <div class="div_left">
+        <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
+            <script>
+            includeHTML();
+
+            </script>
+        </div>
+    </div>
+    <div class="div_right">
+        <p>
+        Binary search is one of the most simple yet most trouble some algorithm widely used to reduce search time. Usually recursive method is preferred. I generally
+        attribute to the one usecase we were introduced to it for. Which is <i>Finding if an element is present in an array.</i> But I, from using this method and twisting it
+        to solve a new problem, usually end up making the problem far more complex. </p>
+        <p> A better approach is to make it iterative. The reason being, in htis process we introduce another variables with stored the probable ans in each step. This ofcourse is not applicable for
+        searching for an element in sorted arrays, but most of the other variations of problem statement which need to be solved like this, it becomes much better
+        instead of keeping track of all the edge cases.</p>
+        <main>
+            <figure>
+                <figcaption>Find the next bigger element of an element if it exists in a sorted array</figcaption>
+                <pre>
+                    <code>
+        public static void bSearch(int[] input, int n) {
+            <i>//input = {1,2,3,4,5,6,6,8};
+              // find the number just greater than 6 in  a sorted array.</i>
+            int n = 7;
+            int low =0;
+            int high = input.length-1;
+            int result = -1;
+            while(low<=high) {
+                int mid = low + (high-low)/2;
+                if(input[mid] > n) {
+                    result = input[mid];
+                    high = mid-1;
+                } else {
+                    low = mid +1;
+                }
+            }
+            System.out.println(result);
+        }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        Refer to the working example <a
+            href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Searching/src/BSearch.java">here</a>
+    </div>
+</div>
+</body>
