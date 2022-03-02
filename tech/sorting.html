@@ -12,9 +12,10 @@
 
 <div class="div_main">
     <div class="div_left">
-        <div menu = "../assets/menu.html" style="float: left;clear: left;text-align:center;">
+        <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
             <script>
             includeHTML();
+
             </script>
         </div>
     </div>
@@ -27,20 +28,21 @@
             <li><a href="#radix">Radix sort</a></li>
             <li><a href="#bubble">Bubble sort</a></li>
             <li><a href="#merge">Merge sort</a></li>
-            <li>Quick sort</li>
-            <li>Heap sort</li>
-            <li>Topological sort</li>
+            <li><a href="#quick">Quick sort</a></li>
+            <li><a href="#heap">Heap sort</a></li>
+            <li><a href="#topological">Topological sort</a></li>
         </ul>
         <div id="selection">
-     <h3>Selection sort</h3>
-        Selection sort involves finding the smallest/largest element in the array and putting it in its correct position in each iteration. </br>
-        We loop over the index, and over the remaining elements to find one for the index.</br>
-        <b>Complexity:</b> O(n^2)
+            <h3>Selection sort</h3>
+            Selection sort involves finding the smallest/largest element in the array and putting it in its correct
+            position in each iteration. </br>
+            We loop over the index, and over the remaining elements to find one for the index.</br>
+            <b>Complexity:</b> O(n^2)
 
-        <main>
-            <figure>
-                <figcaption>Selection Sort</figcaption>
-                <pre>
+            <main>
+                <figure>
+                    <figcaption>Selection Sort</figcaption>
+                    <pre>
                     <code>
         public static void selectionSort(int[] input) {
         for(int i=0;i&lt input.length;i++) {
@@ -61,22 +63,24 @@
     }
                     </code>
                 </pre>
-            </figure>
-        </main>
-        Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/SelectionSort.java">here</a>
+                </figure>
+            </main>
+            Refer to the working example <a
+                href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/SelectionSort.java">here</a>
 
     </div>
-    <div id="insertion">
-        <h3>Insertion sort</h3>
-        Wroks similar to selection sort. But instead of putting an element in correct index in each iteration, it put the element in current index into its right position in partly sorted array </br>
-        <b>Complexity:</b> O(n^2)
+        <div id="insertion">
+            <h3>Insertion sort</h3>
+            Wroks similar to selection sort. But instead of putting an element in correct index in each iteration, it
+            put the element in current index into its right position in partly sorted array </br>
+            <b>Complexity:</b> O(n^2)
 
-        <main>
-            <figure>
-                <figcaption>Insertion sort</figcaption>
-                <pre>
+            <main>
+                <figure>
+                    <figcaption>Insertion sort</figcaption>
+                    <pre>
                     <code>
-       public static void insertionSort(int[] input) {
+        public static void insertionSort(int[] input) {
             for(int i=1;i&lt input.length;i++) {
                 int val = input[i];
                 int j;
@@ -88,24 +92,25 @@
         }
                     </code>
                 </pre>
-            </figure>
-        </main>
-        Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/InsertionSort.java">here</a>
+                </figure>
+            </main>
+            Refer to the working example <a
+                href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/InsertionSort.java">here</a>
 
-    </div>
+        </div>
+        <div id="counting">
+            <h3>Counting Sort</h3>
+            It is a liner time sort algorithm. It is achived by having additional knowledge of the range of the values
+            in the list. We count the number of
+            occurrence of each item and determine the index in the resultant sorted array.
+            <b>Complexity:</b> O(n+k)
 
-    <div id="counting">
-        <h3>Counting Sort</h3>
-        It is a liner time sort algorithm. It is achived by having additional knowledge of the range of the values in the list. We count the number of
-        occurrence of each item and determine the index in the resultant sorted array.
-        <b>Complexity:</b> O(n+k)
-
-        <main>
-            <figure>
-                <figcaption>Counting sort</figcaption>
-                <pre>
+            <main>
+                <figure>
+                    <figcaption>Counting sort</figcaption>
+                    <pre>
                     <code>
-       public static void countingSort(int[] input, int range) {
+        public static void countingSort(int[] input, int range) {
             int[] count = new int[range+1];
             Arrays.stream(input).forEach(e->count[e]++);
             for(int i=1;i&lt count.length;i++) {
@@ -122,12 +127,12 @@
         }
                     </code>
                 </pre>
-            </figure>
-        </main>
-        Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/SelectionSort.java">here</a>
+                </figure>
+            </main>
+            Refer to the working example <a
+                href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/SelectionSort.java">here</a>
 
-    </div>
-
+        </div>
         <div id="radix">
             <h3>Radix Sort</h3>
             Radix sort uses counting sort as an underlying algorithm. In radix sort we aim to reduce the dependen</br>
@@ -135,14 +140,21 @@
             n-> number of elments in array</br>
             b-> base of the sort.</br>
             k->largest element
-            Let there be d digits in input integers. Radix Sort takes O(d*(n+b)) time where b is the base for representing numbers, for example, for the decimal system, b is 10. What is the value of d? If k is the maximum possible value, then d would be O(logb(k)). So overall time complexity is O((n+b) * logb(k)). Which looks more than the time complexity of comparison-based sorting algorithms for a large k. Let us first limit k. Let k <= nc where c is a constant. In that case, the complexity becomes O(nLogb(n)). But it still doesn’t beat comparison-based sorting algorithms.
-            What if we make the value of b larger?. What should be the value of b to make the time complexity linear? If we set b as n, we get the time complexity as O(n). In other words, we can sort an array of integers with a range from 1 to nc if the numbers are represented in base n (or every digit takes log2(n) bits).
+            Let there be d digits in input integers. Radix Sort takes O(d*(n+b)) time where b is the base for
+            representing numbers, for example, for the decimal system, b is 10. What is the value of d? If k is the
+            maximum possible value, then d would be O(logb(k)). So overall time complexity is O((n+b) * logb(k)). Which
+            looks more than the time complexity of comparison-based sorting algorithms for a large k. Let us first limit
+            k. Let k <= nc where c is a constant. In that case, the complexity becomes O(nLogb(n)). But it still doesn’t
+            beat comparison-based sorting algorithms.
+            What if we make the value of b larger?. What should be the value of b to make the time complexity linear? If
+            we set b as n, we get the time complexity as O(n). In other words, we can sort an array of integers with a
+            range from 1 to nc if the numbers are represented in base n (or every digit takes log2(n) bits).
             <main>
                 <figure>
                     <figcaption>Radix sort</figcaption>
                     <pre>
                     <code>
-       public static void countingSort(int[] input, int range, int pow) {
+        public static void countingSort(int[] input, int range, int pow) {
             int[] count = new int[range];
             int[] index = new int[range];
             int[] output = new int[input.length];
@@ -178,8 +190,8 @@
                 </pre>
                 </figure>
             </main>
-            Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/RadixSort.java">here</a>
-
+            Refer to the working example <a
+                href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/RadixSort.java">here</a>
         </div>
         <div id="bubble">
             <h3>Bubble Sort</h3>
@@ -189,74 +201,76 @@
                     <figcaption>Bubble sort</figcaption>
                     <pre>
                     <code>
-    public static void bubbleSort(int[] input) {
-        for(int i = 0;i&lt input.length;i++) {
-         <i>// This flag helps to reduce the time. Since if we reach a point where the array is sorted, we dont want to
-            // continue with the iterations and break out of the loop. In bubble sort, if no swaps happen in a pass of the array,
-            // the array is sorted. </i>
-            boolean flag = false;
-            for(int j=0;j&lt input.length-i-1;j++) {
-                if(input[j]>input[j+1]) {
-                    flag = true;
-                    int temp = input[j];
-                    input[j] = input[j+1];
-                    input[j+1] = temp;
+        public static void bubbleSort(int[] input) {
+            for(int i = 0;i&lt input.length;i++) {
+             <i>// This flag helps to reduce the time. Since if we reach a point where the array is sorted, we dont want to
+                // continue with the iterations and break out of the loop. In bubble sort, if no swaps happen in a pass of the array,
+                // the array is sorted. </i>
+                boolean flag = false;
+                for(int j=0;j&lt input.length-i-1;j++) {
+                    if(input[j]>input[j+1]) {
+                        flag = true;
+                        int temp = input[j];
+                        input[j] = input[j+1];
+                        input[j+1] = temp;
+                    }
+                }
+                if(!flag){
+                    break;
                 }
             }
-            if(!flag){
-                break;
-            }
         }
-    }
                     </code>
                 </pre>
                 </figure>
             </main>
-            Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/BubbleSort.java">here</a>
+            Refer to the working example <a
+                href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/BubbleSort.java">here</a>
         </div>
         <div id="merge">
-            <h3>Bubble Sort</h3>
+            <h3>Merge Sort</h3>
             <b>Complexity:</b> O(n^logn)</br>
             <main>
                 <figure>
                     <figcaption>Merge sort</figcaption>
                     <pre>
                     <code>
-    public static void mergeSort(int[] input, int low, int high, int[] output) {
-        if(low &lt high) {
-            int mid = low + (high - low) / 2;
-            mergeSort(input, low, mid, output);
-            mergeSort(input, mid + 1, high, output);
-            merge(input, low,mid+1,high,output);
-        }
-    }
-    public static void merge(int[] input, int low,int mid, int high, int[] output) {
-        int l = low;
-        int l1 = low,h1=mid-1;
-        int l2 = mid, h2= high;
-        while(l1<=h1 && l2<=h2) {
-            if(input[l1]<=input[l2]) {
-                output[l++]= input[l1++];
+        public static void mergeSort(int[] input, int low, int high, int[] output) {
+            if(low &lt high) {
+                int mid = low + (high - low) / 2;
+                mergeSort(input, low, mid, output);
+                mergeSort(input, mid + 1, high, output);
+                merge(input, low,mid+1,high,output);
             }
-            else{
+        }
+        public static void merge(int[] input, int low,int mid, int high, int[] output) {
+            int l = low;
+            int l1 = low,h1=mid-1;
+            int l2 = mid, h2= high;
+            while(l1<=h1 && l2<=h2) {
+                if(input[l1]<=input[l2]) {
+                    output[l++]= input[l1++];
+                }
+                else{
+                    output[l++] = input[l2++];
+                }
+            }
+            while(l1<=h1) {
+                output[l++] = input[l1++];
+            }
+            while(l2<=h2) {
                 output[l++] = input[l2++];
             }
+            for(int i=low;i<=high;i++){
+                input[i] = output[i];
+            }
         }
-        while(l1<=h1) {
-            output[l++] = input[l1++];
-        }
-        while(l2<=h2) {
-            output[l++] = input[l2++];
-        }
-        for(int i=low;i<=high;i++){
-            input[i] = output[i];
-        }
-    }
                     </code>
                 </pre>
                 </figure>
             </main>
-            Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/MergeSort.java">here</a>
+            Refer to the working example <a
+                href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/MergeSort.java">here</a>
         </div>
         <div id="quick">
             <h3>Quick Sort</h3>
@@ -266,42 +280,177 @@
                     <figcaption>Quick sort</figcaption>
                     <pre>
                     <code>
-    public static void quickSort(int[] input, int low, int high, int[] output) {
-        if(low &lt high) {
-            int mid = partition(input,low,high);
-            quickSort(input, low, mid-1, output);
-            quickSort(input, mid + 1, high, output);
-        }
-    }
-    public static int partition(int[] input, int low, int high) {
-        int idx = low;
-        int i = low+1;
-        int j = high;
-        while(i &lt j){
-            while(i &lt input.length && input[i]<=input[idx]){
-                i++;
-            }
-            while(j>i && input[j]>input[idx]) {
-                j--;
-            }
-            if(i &lt j) {
-                int temp = input[i];
-                input[i] = input[j];
-                input[j] = temp;
-                i++;
+        public static void quickSort(int[] input, int low, int high, int[] output) {
+            if(low &lt high) {
+                int mid = partition(input,low,high);
+                quickSort(input, low, mid-1, output);
+                quickSort(input, mid + 1, high, output);
             }
         }
-        int temp = input[i-1];
-        input[i-1] = input[idx];
-        input[idx] = temp;
-        return i-1;
-    }
+        public static int partition(int[] input, int low, int high) {
+            int idx = low;
+            int i = low+1;
+            int j = high;
+            while(i &lt j){
+                while(i &lt input.length && input[i]<=input[idx]){
+                    i++;
+                }
+                while(j>i && input[j]>input[idx]) {
+                    j--;
+                }
+                if(i &lt j) {
+                    int temp = input[i];
+                    input[i] = input[j];
+                    input[j] = temp;
+                    i++;
+                }
+            }
+            int temp = input[i-1];
+            input[i-1] = input[idx];
+            input[idx] = temp;
+            return i-1;
+        }
                     </code>
                 </pre>
                 </figure>
             </main>
             Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/QuickSort.java">here</a>
         </div>
-</div>
+        <div id="heap">
+            <h3>Heap Sort</h3>
+            <b>Complexity:</b> O(nlogn)</br>
+            <main>
+                <figure>
+                    <figcaption>Heap sort</figcaption>
+                    <pre>
+                    <code>
+        <i>// Build heap creates a heap from an array of elements
+         // Here we are building a max heap(where the root element has the highest value)
+         // The resultant sorted output will be in descending order.</i>
+
+        public static void buildHeap(int[] input) {
+            for(int i = (int)Math.floor(input.length/2.0);i>0;i--) {
+                heapify(input,i,input.length);
+            }
+        }
+        <i>// This method makes sure that the heap property is maintained in the subtree of a node.</i>
+        public static void heapify(int[] input, int idx, int n) {
+            int max;
+            while(idx &lt n) {
+                max = idx;
+                if ((idx * 2) < n) {
+                    if (input[max] < input[idx * 2]) {
+                        max = idx * 2;
+                    }
+                }
+                if ((idx * 2) + 1 < n) {
+                    if (input[max] < input[(idx * 2) + 1]) {
+                        max = (idx * 2) + 1;
+                    }
+                }
+                if (max != idx) {
+                    int temp = input[max];
+                    input[max] = input[idx];
+                    input[idx] = temp;
+                    idx = max;
+                } else {
+                    break;
+                }
+            }
+        }
+        <i>// This populates an array with the sorted output.</i>
+        public static int[] heapSort(int[] input) {
+            int[] result = new int[input.length-1];
+            result[0] = -1;
+            int idx = 0;
+            for(int i=1;i &lt input.length;i++) {
+                result[idx++] = input[1];
+                input[1] = input[input.length-i];
+                heapify(input,1,input.length-i);
+            }
+            return  result;
+        }
+                    </code>
+                </pre>
+                </figure>
+            </main>
+            Refer to the working example <a
+                href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/HeapSort.java">here</a>
+        </div>
+
+        <div id="topological">
+            <h3>Topological Sort</h3>
+            <b>Complexity:</b> works like complete DFS hence O(|E|+|V|)</br>
+            <main>
+                <figure>
+                    <figcaption>Topological sort</figcaption>
+                    <pre>
+                    <code>
+        public static void topologicalSort(List &lt Integer>[] graph) {
+            int n = graph.length;
+            int[] visited = new int[n];
+            Arrays.fill(visited, 0);
+            Stack &lt Integer> stack = new Stack<>();
+            int ret = 0;
+            for(int i = 1;i &lt graph.length;i++) {
+                if(visited[i] == 0) {
+                    ret =sort(graph, i, stack,visited);
+                    if(ret == -1) {
+                        break;
+                    }
+                }
+            }
+            if(ret!=-1) {
+                while(!stack.isEmpty()) {
+                    System.out.print(stack.peek()+", ");
+                    stack.pop();
+
+                }
+            }
+        }
+        public static int  sort(List &lt Integer>[] graph, int v, Stack &lt Integer> stack, int[] visited) {
+            visited[v] = 1;
+            List &lt Integer> adj = graph[v];
+            if(adj == null) {
+                visited[v] = 2;
+                stack.add(v);
+                return 1;
+             }
+            for(int i : adj) {
+                if(visited[i]==1) {
+                    System.out.println("Not a DAG");
+                    return -1;
+                }
+                if(visited[i]!=2) {
+                    int ret = sort(graph, i, stack, visited);
+                    if (ret == -1) {
+                        return -1;
+                    }
+                }
+            }
+            stack.add(v);
+            visited[v] = 2;
+            return  1;
+        }
+        public static void main(String[] args) {
+            // Can only be done on a DAG
+            int[][] edges = {{1,2},{1,3},{1,4},{3,4},{4,2},{2,5},{4,5},{4,6},{4,7},{3,7},{5,6},{7,6}};
+            List &lt Integer>[] graph = new LinkedList[8];
+            for(int i = 0;i &lt edges.length;i++) {
+                if(graph[edges[i][0]] == null) {
+                    graph[edges[i][0]] = new LinkedList<>();
+                }
+                graph[edges[i][0]].add(edges[i][1]);
+            }
+            topologicalSort(graph);
+        }
+                    </code>
+                </pre>
+                </figure>
+            </main>
+            Refer to the working example <a
+                href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/TopologicalSort.java">here</a>
+        </div>
+    </div>
 </div>
 </body>
