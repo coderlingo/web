@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+    <link href="../assets/style.css" rel="stylesheet">
+    <script src="../assets/menu.js"></script>
+</head>
+<body style="height:100%">
+<header>
+    <title>Union Find</title>
+    <h1>Union Find</h1>
+</header>
+<div class="div_main">
+    <div class="div_left">
+        <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
+            <script>
+            includeHTML();
+            </script>
+        </div>
+    </div>
+    <div class="div_right">
+        <p>Union find is used in use cases where there are multiple sets and we need to find which sets an element belongs too. With a probable
+        reason to join sets. Typical example is to detect a cycle in a graph. Because it involes sets and keeping track of the elements in different sets,
+        union find is an algorithm which works on disjoint sets data structure.
+        </p>
+        </br>
+        <b>Complexity:</b> The native approach of union-find works on O(n) where union adds the parent of one subset to the parent of another. If we end
+        up adding the bigger tree as a child to the smaller each time, the find operation would end up running over a skewed tree.
+        </br>
+        To overcome this, we use union by rank, i.e., add smaller tree as the child of bigger. To make it even better we can add path compression.
+        Where in, during find operation, we also flatten the tree along the branch we used to traverse to the parent.
+        </br>
+        <main>
+            <figure>
+                <figcaption>Union-Find without Rank and Path Compression</figcaption>
+                <pre>
+                    <code>
+        public static int find(int[] parent, int a) {
+        if(parent[a] !=a) {
+            parent[a] = find(parent,parent[a]);
+            return parent[a];
+        } else
+            return a;
+        }
+        public static int union(int[] parent,int[] rank, int a, int b) {
+            int pA = find(parent, a);
+            int pB = find(parent, b);
+            if(pA!=pB) {
+                if(rank[pA] < rank[pB]) {
+                    parent[a] = pB;
+                }
+                else if(rank[pA] > rank[pB]) {
+                    parent[b] = pA;
+                } else {
+                    parent[a] = pB;
+                    rank[pB]++;
+                }
+                return 1;
+            }
+            return -1;
+        }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        Refer to the working example <a
+            href="https://github.com/coderlingo/algo-and-data-structures/blob/main/union-find/src/UnionFind.java">here</a>
+        <main>
+            <figure>
+                <figcaption>Union-Find with Rank and Path Compression</figcaption>
+                <pre>
+                    <code>
+        public static int find(int[] parent, int a) {
+        if(parent[a] !=a) {
+            parent[a] = find(parent,parent[a]);
+            return parent[a];
+        } else
+            return a;
+        }
+        public static int union(int[] parent,int[] rank, int a, int b) {
+            int pA = find(parent, a);
+            int pB = find(parent, b);
+            if(pA!=pB) {
+                if(rank[pA] < rank[pB]) {
+                    parent[a] = pB;
+                }
+                else if(rank[pA] > rank[pB]) {
+                    parent[b] = pA;
+                } else {
+                    parent[a] = pB;
+                    rank[pB]++;
+                }
+                return 1;
+            }
+            return -1;
+        }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        Refer to the working example <a
+            href="https://github.com/coderlingo/algo-and-data-structures/blob/main/union-find/src/UnionFindImproved.java">here</a>
+    </div>
+</div>
+</body>
