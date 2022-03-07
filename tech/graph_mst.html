@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+    <link href="../assets/style.css" rel="stylesheet">
+    <script src="../assets/menu.js"></script>
+</head>
+<body style="height:100%">
+<header>
+    <title>Graph Algorithm: Minimum Spanning Tree</title>
+    <h1>Graph Algorithm: Minimum Spanning Tree</h1>
+</header>
+<div class="div_main">
+    <div class="div_left">
+        <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
+            <script>
+            includeHTML();
+
+            </script>
+        </div>
+    </div>
+    <div class="div_right">
+        <p>MST algorithms are used to find the minimum spanning tree of a graph with the sum of the weights of the edges as minimum and number of edges = (V-1)
+        where even if 1 edge is removed from the tree, the tree would be disconnected. MST algorithms have a lot of real life use like finding the network topology
+        with the least traffic. Prim's and Kruskal's are the 2 most popularly used MST algorithms. It is a greedy algorithm.</p>
+        <h3>Kruskal's Algorithm</h3>
+        <p>It uses Union-Find algorithm to decide whether an edge should be added to the resultant tree or not. The edges are picked in a decreasing order of weight.</p>
+        <b>Complexity:</b>O(ElogE + ElogV)
+        </br>
+        O(ElogE) comes from sorting the edges.</br>
+        O(ElogV) is from using union-by-rank and path compression for each edge.
+        <main>
+            <figure>
+                <figcaption>Kruskal's Algorithm</figcaption>
+                <pre>
+                    <code>
+        public static int find(int a, int[] parent) {
+        if(parent[a] == a) {
+            return a;
+        }
+        parent[a] = find(parent[a], parent);
+        return parent[a];
+        }
+        public static void union(int[] parent, int[] rank, int a, int b) {
+            if(rank[a] > rank[b]) {
+                parent[b] = a;
+            } else if(rank[a] < rank[b]) {
+                parent[a] = b;
+            } else {
+                parent[a] = b;
+                rank[b] ++;
+            }
+        }
+        public static void kruskal(List &ltint[]> mst, int[][] edges, int n) {
+            Arrays.sort(edges, new Comparator &ltint[]>() {
+                @Override
+                public int compare(int[] o1, int[] o2) {
+                    return o1[2]-o2[2];
+                }
+            });
+            int[] parent = new int[n];
+            int[] rank = new int[n];
+            for(int i =0;i &lt n;i++) {
+                parent[i] = i;
+                rank[i] = 1;
+            }
+            for(int[] edge : edges) {
+                int p1 = find(edge[0], parent);
+                int p2 = find(edge[1], parent);
+                if(p1!=p2) {
+                    mst.add(edge);
+                    union(parent,rank,p1,p2);
+                }
+            }
+        }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        Refer to the working example <a
+            href="https://github.com/coderlingo/algo-and-data-structures/blob/main/graph-algorithms/src/MST/Kruskals.java">here</a>
+        <h3>Prim's algorithm</h3>
+        <p>This works similar to Dijkstra's algorithm. At each step, it pops vertex with next best min weight into a priority queue and updates the weight of all adjacent
+        vertices before pushing them in the priority queue.</p>
+        <b>Complexity:</b>O((V+E)logV)
+        </br>
+        logV is from the priority queue. </br>
+        (V+E) for traversing over all the adj list of all vertices.
+        <main>
+            <figure>
+                <figcaption>Prim's Algorithm</figcaption>
+                <pre>
+                    <code>
+        public static void prims() {
+            <i>// n*n matrix of vertices and edge weights
+            // complexity of this approach in O(V^2) but we can improve it to O(ElogV) if we store the edges in adj list
+            // and use heap to get the next vertex.</i>
+            int[][] graph =
+                           {{Integer.MAX_VALUE,10,6,5},
+                            {10,Integer.MAX_VALUE,Integer.MAX_VALUE,15},
+                            {6,Integer.MAX_VALUE,Integer.MAX_VALUE,4},
+                            {5,15,4,Integer.MAX_VALUE}};
+            int n = 4;
+            boolean[] inMst = new boolean[n];
+            Arrays.fill(inMst,false);
+            int[][] curWeights = new int[n][2];
+            for(int i = 0;i &lt n;i++) {
+                curWeights[i][0] = Integer.MAX_VALUE;
+                curWeights[i][1] = i;
+            }
+            curWeights[0][0]=0;
+            int min = 0;
+            int minIdx = 0;
+            int count = 0;
+            while(count &lt n) {
+                min = Integer.MAX_VALUE;
+                for (int i = 0; i < n; i++) {
+                    if (min > curWeights[i][0] && inMst[i] == false) {
+                        minIdx = i;
+                        min = curWeights[i][0];
+                    }
+                }
+                inMst[minIdx] = true;
+                System.out.println(minIdx+" "+curWeights[minIdx][1]);
+                for(int i=0;i &lt n;i++) {
+                    if(curWeights[i][0]>graph[minIdx][i]) {
+                        curWeights[i][0] = graph[minIdx][i];
+                        curWeights[i][1] = minIdx;
+                    }
+                }
+                count++;
+            }
+        }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        Refer to the working example <a href="https://github.com/coderlingo/algo-and-data-structures/blob/main/graph-algorithms/src/MST/Prims.java">here</a>
+    </div>
+</div>
+</body>
