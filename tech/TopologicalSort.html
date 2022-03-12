@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+    <link href="../assets/style.css" rel="stylesheet">
+    <script src="../assets/menu.js"></script>
+</head>
+<body style="height:100%">
+<header>
+    <title>Topological Sort</title>
+    <h1>Many Flavors of Topological Sort</h1>
+</header>
+<div class="div_main">
+    <div class="div_left">
+        <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
+            <script>
+            includeHTML();
+
+            </script>
+        </div>
+    </div>
+    <div class="div_right">
+        <p>There are multiple ways to find the topological order of any DAG. The one most common approach that most of us are familiar with is using DFS.
+        There is also BFS approach of running topological sort. It is faster than DFS as each vertex is processed only once. </p>
+        <h3>Khan's Algorithm (BFS)</h3>
+        <p>The BFS approach is also called Khan's algorithm. In this method we maintain the indegrees of vertices. An edge e from v->u, means v needs to complete
+        first before u can start, which is different form the convention followed in DFS. For a graph to have topological order, there needs to be atleast one vertex
+        which does not have any incoming vertices. The idea of Khan's algorithm is that for a graph to have topological order, if we remove all vertices
+        with no incoming edges (by removing all other the edges associated to it), we should always find other vertices with no indegree until the graph is left with no
+        edges. if we reach a point where there are no more vertices with 0 indegree but the graph still has edges, topological sort of the graph is not possible.
+        Otherwise, the order in which we remove vertices with 0 indegree is the topological order of the graph.</p>
+        <main>
+            <figure>
+                <figcaption>Khan's algorithm of topological order(BFS)</figcaption>
+                <pre>
+                    <code>
+            <i>// pre is the |E|*2 matrix. The first value is the vertex which can only be processed if the 2nd vertex is processed.
+            n is the total number of vertices.</i>
+            public boolean isDAG(int n, int[][] pre) {
+            int[][] edge = new int[n][n];
+            int[] indegrees = new int[n];
+            <i>// Edge is from the vertex which should complete first to the vertex that depends on this vertex.</i>
+            for(int[] e : pre) {
+                edge[e[1]][e[0]] = 1;
+                indegrees[e[0]]++;
+            }
+            Queue &ltInteger> q = new LinkedList<>();
+            for(int i = 0;i &lt n;i++) {
+                if(indegrees[i] == 0) {
+                    q.add(i);
+                }
+            }
+            int count = 0;
+            while(!q.isEmpty()) {
+                int e = q.poll();
+                count++;
+                for(int i = 0;i &lt n;i++) {
+                    if(edge[e][i]==1) {
+                        edge[e][i] = 0;
+                        indegrees[i]--;
+                        if(indegrees[i]==0) {
+                            q.add(i);
+                        }
+                    }
+                }
+            }
+            if(count == n)
+            return true;
+            else return false;
+
+        }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        <h3>DFS for topological sort</h3>
+        <b>Complexity:</b> works like complete DFS hence O(|E|+|V|)</br>
+        <main>
+            <figure>
+                <figcaption>Topological sort using DFS</figcaption>
+                <pre>
+                    <code>
+        public static void topologicalSort(List &lt Integer>[] graph) {
+            int n = graph.length;
+            int[] visited = new int[n];
+            Arrays.fill(visited, 0);
+            Stack &lt Integer> stack = new Stack<>();
+            int ret = 0;
+            for(int i = 1;i &lt graph.length;i++) {
+                if(visited[i] == 0) {
+                    ret =sort(graph, i, stack,visited);
+                    if(ret == -1) {
+                        break;
+                    }
+                }
+            }
+            if(ret!=-1) {
+                while(!stack.isEmpty()) {
+                    System.out.print(stack.peek()+", ");
+                    stack.pop();
+
+                }
+            }
+        }
+        public static int  sort(List &lt Integer>[] graph, int v, Stack &lt Integer> stack, int[] visited) {
+            visited[v] = 1;
+            List &lt Integer> adj = graph[v];
+            if(adj == null) {
+                visited[v] = 2;
+                stack.add(v);
+                return 1;
+             }
+            for(int i : adj) {
+                if(visited[i]==1) {
+                    System.out.println("Not a DAG");
+                    return -1;
+                }
+                if(visited[i]!=2) {
+                    int ret = sort(graph, i, stack, visited);
+                    if (ret == -1) {
+                        return -1;
+                    }
+                }
+            }
+            stack.add(v);
+            visited[v] = 2;
+            return  1;
+        }
+        public static void main(String[] args) {
+            // Can only be done on a DAG
+            int[][] edges = {{1,2},{1,3},{1,4},{3,4},{4,2},{2,5},{4,5},{4,6},{4,7},{3,7},{5,6},{7,6}};
+            List &lt Integer>[] graph = new LinkedList[8];
+            for(int i = 0;i &lt edges.length;i++) {
+                if(graph[edges[i][0]] == null) {
+                    graph[edges[i][0]] = new LinkedList<>();
+                }
+                graph[edges[i][0]].add(edges[i][1]);
+            }
+            topologicalSort(graph);
+        }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        Refer to the working example <a
+            href="https://github.com/coderlingo/algo-and-data-structures/blob/main/Sorting/src/TopologicalSort.java">here</a>
+    </div>
+</div>
+</body>
