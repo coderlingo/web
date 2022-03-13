@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+    <link href="../assets/style.css" rel="stylesheet">
+    <script src="../assets/menu.js"></script>
+</head>
+<body style="height:100%">
+<header>
+    <title>Java Advanced</title>
+    <h1>Java Advanced</h1>
+</header>
+<div class="div_main">
+    <div class="div_left">
+        <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
+            <script>
+            includeHTML();
+
+            </script>
+        </div>
+    </div>
+    <div class="div_right">
+      <h3>Important concepts on Java concurrency</h3>
+        <ul>
+            <li><b>State:</b> An objects state is the data stored in the state variable such as instances or static variables.</li>
+            <li>When more than one threads can update an objects state, there is a need for synchronization.</li>
+            <li>The problem which occurs because of 2 threads competing for shared resource is called <b>race condition</b>.</li>
+            <li>2 main type of operations in applications that can cause race condition in thread are:</li>
+            <ul>
+                <li>Check-then-act : example is lazy initialization
+                <li>Read-modify-write: example is increment operation</li>
+            </ul>
+            <main>
+                <figure>
+                    <figcaption>Lazy Initialization Race condition</figcaption>
+                    <pre>
+                    <code>
+        public class LazyInit {
+            SomeObject someObject = null;
+            public LazyInit() {
+                if(someObject == null) {
+                    someObject = new SomeObject();
+                }
+                return someObject;
+            }
+        }
+                    </code>
+                </pre>
+                </figure>
+            </main>
+            <li><b>java.util.concurrency.atomic</b> package has thread safe versions of primitive data type to help with race conditions associated with
+            increment operation. Example : AtomicLong. These data types make sure that read-then-update operations are not optimized by the compiler and are atomic.
+            </li>
+            <li>But despite AtomicLong, there can exist race conditions because of multiple variable depend on each other and need to be updated to be in sync. </li>
+            <li><b>Intrinsic locks:</b> To solve the above problem, intrinsic locks is a solution. When a block of code needs to be preformed atomically,
+            it can be put in a lock. Only threads that have access to the lock can change the code. And since intrinsic locks are by default mutex, only one thread can hold it at a time.</li>
+            <pre>
+                    <code>
+        synchronized(lock) {
+            increment++;
+        }
+                    </code>
+                </pre>
+            By definition, every java oject can act as a lock implicitly. These are called intrinsic locks.
+            Intrinsic locks are also reentrant. Which means the thread holding a lock can request for the same lock again and will not be blocked because of mutex nature.
+            <li>Each mutable state variable that maybe access by multiple threads from different places need to have the same lock.</li>
+            <li><b>@GuardedBy("this")</b> is used to tell what is a variable guarded with. every access to this variable need to be guarded with the same.</li>
+            <li>When we use synchronized block in a piece of code, the block should be small enough to use concurrency well. And large enough that the overhead of
+            acquiring and releasing locks is not there.</li>
+        </ul>
+    </div>
+</div>
+</body>
