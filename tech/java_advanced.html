@@ -60,7 +60,7 @@
         }
                     </code>
                 </pre>
-            By definition, every java oject can act as a lock implicitly. These are called intrinsic locks.
+            By definition, every java object can act as a lock implicitly. These are called intrinsic locks.
             Intrinsic locks are also reentrant. Which means the thread holding a lock can request for the same lock again and will not be blocked because of mutex nature.
             <li>Each mutable state variable that maybe access by multiple threads from different places need to have the same lock.</li>
             <li><b>@GuardedBy("this")</b> is used to tell what is a variable guarded with. every access to this variable need to be guarded with the same.</li>
