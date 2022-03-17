@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+  <link href="../assets/style.css" rel="stylesheet">
+  <script src="../assets/menu.js"></script>
+</head>
+<body style="height:100%">
+<header>
+  <title>HBase</title>
+  <h1>Hbase(Pending)</h1>
+</header>
+<div class="div_main">
+  <div class="div_left">
+    <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
+      <script>
+            includeHTML();
+            </script>
+    </div>
+  </div>
+  <div class="div_right">
+    <h3>HBase key concepts:</h3>
+    <ul>
+      <li>It falls under the category of NoSQL databases. </li>
+      <li>It is an example of wide column database. Wide column because at any point of time, we can update the schema of the database by adding additional columns without affecting the functionality.</li>
+      <li>Its is well suited for sparse and huge volume of data.</li>
+      <li>Works over community hardware.</li>
+    </ul>
+    <h3>Architecture Overview</h3>
+    <p>Table is made of rows and columns. The Intersection of those are called cells. Any updates made on cell content are versioned.</p>
+    <p>Rows have keys. The table is sorted on keys. THe keys are byte arrays. So anything can be stored as keys. All table access are on this key.</p>
+    <p> The keys refer to column families which are collection of logically similar columns. for example for storing web pages, the url can be the key and metadata can be
+    one column family while content can be another. A specific column with a column family is referred to as Qualifier. It is usually represented as <b>CF:Q.</b></p>
+    <p>The tables CF are always defined upfront. the columns can be added on the fly. Generally ann CF members are stored together in a file system.</p>
+    <p>The table is partitioned horizontally and spread across regions. As the table grows, more splits happen.</p>
+    <p>Row update is atomic operation. </p>
+    <p>HBase include similar components to HDFS and YARN. It includes a Master and Zookeeper. Along with the many region servers. Zookeeper is the authority of the cluster.
+    It performs the health checks on the master and region servers. RegionServers maintains multiple regions. By default HBase uses HBASE to persist data. If not, in rare cases local disk is used. </p>
+  </div>
+</div>
+</body>

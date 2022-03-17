@@ -31,8 +31,16 @@
           <li>Wide-Column Database</li>
       </ul>
       <h3>Relational Database</h3>
+      Structured representation of data. Data has attributes and well-defined relation between them. Usually works well for transactional data since such tables
+      ensure strong ACID properties. These databases do not scale well. To extract tricky relations from the database, joins need to be performed which can be an
+      expensive operation. A lot of effort is needed in the initial phases for coming up with a normalized schema for the db.</br>
       <b>Examples:</b> MySQL(open source), PostGreSQL(open source)
+      <h5>References:</h5>
+      <ul>
+          <li>https://aws.amazon.com/relational-database/</li>
+      </ul>
       <h3>Document-Oriented Database</h3>
+
       <b>Examples:</b> MongoDB, CouchDB, Amazon DocumentDB etc.
       <h3>Graph Database</h3>
       <b>Examples:</b> Neo4j
@@ -41,6 +49,7 @@
       <h3>Time Series Database</h3>
       <b>Examples:</b> Influx DB
       <h3>Wide-Column Database</h3>
+      Refer to <a href="https://coderlingo.github.io/web/tech/hbase.html">HBase basics</a> for understanding hBase wide column database. Prior knowledge of Hadoop is recommended.
       <b>Examples:</b> Cassandra, Hbase, BigTable etc.
   </div>
 </div>
