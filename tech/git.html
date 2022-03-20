@@ -125,6 +125,16 @@
         resulting commit will replace the incomplete one, and it will look like we committed the changes to hello.py and
         main.py in a single snapshot. --></br>
         </br>
+        <h4>Reverting a previous commit</h4>
+        <pre><code>
+        git revert HEAD~2..HEAD
+
+                OR
+
+        git reset HEAD~
+        </code></pre>
+        The first command resets the head to the head prior to the last 2 commits. It's a clean way of reverting a commit.
+        The second command lets you revert to a previous commit while keeping the option to add and of the changes in current commit.
         For details of how git works and commands refer <a href="https://www.atlassian.com/git/tutorials/">this. </a>
         </br>
         </br>
