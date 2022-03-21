@@ -7,7 +7,7 @@
 <body style="height:100%">
 <header>
     <title>Variations of target and numbers problem</title>
-    <h1>Variations of target and numbers problem(Pending)</h1>
+    <h1>Variations of target and numbers problem</h1>
 </header>
 <div class="div_main">
     <div class="div_left">
@@ -184,9 +184,37 @@
             </main>
             <a href="https://leetcode.com/problems/combination-sum-ii/">find all unique combinations in candidates where the candidate numbers sum to target. No duplicates</a>
         </div>
-        <p>
+        <div id="6">
+            <h3>0/1 Knapsack</h3>
+            <p>All the problems listed here have 1 thing in common. They are all variations of knapsack problem. Knapsack problems are of the following types:
+                <ul>
+            <li>Bounded knapsack: Here there is a fixed number of each item available. 0/1 knapsack is an example of this. we can't add more than 1 of any item.</li>
+            <li>Un-bounded knapsack: coin change problems listed above are un-bounded knapsack. Infinite quantity of each item is available to us.</li>
+        </ul>
+            In 0/1 Knapsack, find max value of items that can be put in knapsack of at most 1 of each is available. The total weight of the items selected should not exceed weight supported by knapsack.
 
-
+            </p>
+            <main>
+                <figure>
+                    <figcaption>0/1 Knapsack</figcaption>
+                    <pre>
+                    <code>
+        public static int knapSack(int W, int[] wt, int[] val, int n) {
+            int[] dp = new int[W+1];
+            for(int i = 0;i &lt n;i++) {
+                for(int j=W;j>0;j--) {
+                    if(wt[i]<=j) {
+                        dp[j] = Math.max(val[i]+dp[j-wt[i]],dp[j]);
+                    }
+                }
+            }
+            return dp[W];
+        }
+                    </code>
+                </pre>
+                </figure>
+            </main>
+        </div>
     </div>
 </div>
 </body>
