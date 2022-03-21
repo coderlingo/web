@@ -19,10 +19,174 @@
         </div>
     </div>
     <div class="div_right">
-        <p><a href="https://leetcode.com/problems/combination-sum/ ">list of all unique combinations of candidates where the chosen numbers sum to target. The same number may be chosen from candidates an unlimited number of times. No duplicates</a>
+        There are various combinations of coin change or unbounded knapsack Problems. I tried to consolidate the combinations I came across at one place to avoid confusion.
+        <ul>
+        <li><a href="#1">Problem 1: Count of all combinations of getting a sum</a></li>
+        <li><a href="#2">Problem 2: Count of all permutations of getting a sum</a></li>
+        <li><a href="#3">Problem 3: Min no. of values to make a sum </a></li>
+        <li><a href="#4">Problem 4: Return all solutions where sum is K with distinct values</a></li>
+        <li><a href="#5">Problem 5: Return all distinct solutions where sum is K with non-distinct values</a></li>
+        <li><a href="#6">Problem 6: 0/1 Knapsack</a></li>
+        </ul>
+        <div id="1">
+            <h3>Count of all combinations of getting a sum</h3>
+            <p>All combinations mean {1,2} , {2,1} should be counted as one. For all combination, its also important that there are no repetitions in the numbers given.
+                Otherwise the following code will have duplication issue with needs to be clarified in hte problem statement.
+            </p>
+            <main>
+                <figure>
+                    <figcaption>Count of all combinations of getting a sum</figcaption>
+                    <pre>
+                    <code>
+        public static int countCombination(int[] nums, int sum) {
+            int[]dp = new int[sum+1];
+            dp[0] = 1;
+            for(int i = 0;i &lt nums.length;i++) {
+                for(int j = 1;j<=sum;j++) {
+                    if (j - nums[i] >= 0) {
+                        dp[j] += dp[j - nums[i]];
+                    }
+                }
+            }
+            return dp[sum];
+        }
+                    </code>
+                </pre>
+                </figure>
+            </main>
+        </div>
+        <div id="2">
+            <h3>Count of all permutations of getting a sum</h3>
+            <p>All permutation mean {1,2} , {2,1} should be counted as 2. Not that common but has a little different approach from the all combinations problem.
+            </p>
+            <main>
+                <figure>
+                    <figcaption>Count of all permutations of getting a sum</figcaption>
+                    <pre>
+                    <code>
+        public static int countPermutation(int[] nums, int sum) {
+            int[] dp = new int[sum+1];
+            dp[0] = 1;
+            for(int i = 1;i<=sum;i++) {
+                for(int j = 0;j &lt nums.length;j++) {
+                    <i>// permutation because 5-2, 5-3 both will be counted. which means {2,3}, {3,2} both will add to the final count.</i>
+                    if(i-nums[j]>=0) {
+                        dp[i] += dp[i-nums[j]];
+                    }
+                }
+            }
+            return dp[sum];
+        }
+                    </code>
+                </pre>
+                </figure>
+            </main>
+            <a href="https://leetcode.com/problems/combination-sum-iv/">Return the number of possible combinations that add up to target. All permutations. Rep allowed</a>
+        </div>
+        <div id="3">
+            <h3>Find the min no. of values to make a sum</h3>
+            <p>Since we need the minimum number of values to get the sum, we can look through the space of all combinations instead of permutations. Hence, We go
+                by the first approach. The information we store is cells are the number of values to make a sum instead of how many possibles combinations so far.</p>
+            <main>
+                <figure>
+                    <figcaption>Find the min no. of values to make a sum</figcaption>
+                    <pre>
+                    <code>
+            public static int minCount(int[] nums, int sum) {
+                int dp[] = new int[sum+1];
+                Arrays.fill(dp,Integer.MAX_VALUE);
+                dp[0] = 0;
+                for(int j=0;j &lt nums.length;j++) {
+                    for(int i=1;i<=sum;i++) {
+                        if(i-nums[j]>=0 && dp[i-nums[j]]!=Integer.MAX_VALUE) {
+                            dp[i] = Math.min(dp[i],dp[i-nums[j]]+1);
+                        }
+                    }
+                }
+                return dp[sum];
+            }
+                        </code>
+                </pre>
+                </figure>
+            </main>
+        </div>
+        <div id="4">
+            <h3>Return all solutions(combinations) where sum is K with distinct values</h3>
+            <p> This takes a set of distinct number as input and returns all combinations that have the given sum. It works because the set has distinct values, if not
+            , more clarification would be need on the output.</p>
+            <main>
+                <figure>
+                    <figcaption>Return all solutions(combinations) where sum is K with distinct values</figcaption>
+                    <pre>
+                    <code>
+            public static void helperDistinctVal(int idx, int[] candidates, int target, List &ltList &ltInteger>> result, List &ltInteger> cur) {
+                if(target == 0) {
+                    result.add(new LinkedList<>(cur));
+                    return;
+                }
+                if(idx == candidates.length || target<=0) {
+                    return;
+                }
+                for(int i = idx;i &lt candidates.length;i++) {
+                    cur.add(candidates[i]);
+                    helperDistinctVal(i,candidates,target-candidates[i],result,cur);
+                    cur.remove(cur.size()-1);
+                }
+
+            }
+            public static List &ltList &ltInteger>> solutionDistinctVal(int[] nums, int sum) {
+                List &ltList &ltInteger>> result = new LinkedList<>();
+                List &ltInteger> cur = new LinkedList<>();
+                helperDistinctVal(0,nums,sum,result,cur);
+                return result;
+            }
+                        </code>
+                </pre>
+                </figure>
+            </main>
+            Refer to the leetcode problem for this: <a href="https://leetcode.com/problems/combination-sum/ ">list of all unique combinations of candidates where the chosen numbers sum to target. The same number may be chosen from candidates an unlimited number of times. No duplicates</a>
+
+        </div>
+        <div id="5">
+            <h3>Return all distinct solutions(combinations) where sum is K with non-distinct values</h3>
+            <p> This takes a set of non-distinct numbers as input and returns all distinct combinations that have the given sum. </p>
+            <main>
+                <figure>
+                    <figcaption>Return all distinct solutions(combinations) where sum is K with non-distinct values</figcaption>
+                    <pre>
+                    <code>
+            public static void helperNonDistinctVal(int idx, int[] candidates, int target, List &ltList &ltInteger>> result, List &ltInteger> cur) {
+                if(target == 0) {
+                    result.add(new LinkedList<>(cur));
+                    return;
+                }
+                if(idx == candidates.length || target<=0) {
+                    return;
+                }
+                for(int i = idx;i &lt candidates.length;i++) {
+                    if(i == idx || candidates[i] !=candidates[i-1]) {
+                        cur.add(candidates[i]);
+                        helperNonDistinctVal(i+1,candidates,target-candidates[i],result,cur);
+                        cur.remove(cur.size()-1);
+                    }
+                }
+            }
+            public static List &ltList &ltInteger>> solutionNonDistinctVal(int[] nums, int sum) {
+                List &ltList &ltInteger>> result = new LinkedList<>();
+                List &ltInteger> cur = new LinkedList<>();
+                Arrays.sort(nums);
+                helperNonDistinctVal(0,nums,sum,result,cur);
+                return result;
+            }
+                        </code>
+                </pre>
+                </figure>
+            </main>
             <a href="https://leetcode.com/problems/combination-sum-ii/">find all unique combinations in candidates where the candidate numbers sum to target. No duplicates</a>
-            https://leetcode.com/problems/combination-sum-iii/
-            <a href="https://leetcode.com/problems/combination-sum-iv/">Return the number of possible combinations that add up to target. All permutations. Rep allowed</a></p>
+        </div>
+        <p>
+
+
     </div>
 </div>
 </body>
