@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+    <link href="../assets/style.css" rel="stylesheet">
+    <script src="../assets/menu.js"></script>
+</head>
+<body style="height:100%">
+<header>
+    <title>Variations of Water trapping/Area under the histogram problem</title>
+    <h1>Variations of Water trapping/Area under the histogram problem</h1>
+</header>
+<div class="div_main">
+    <div class="div_left">
+        <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
+            <script>
+            includeHTML();
+
+            </script>
+        </div>
+    </div>
+    <div class="div_right">
+        There are many variations of water trapping and area under the histogram which always confuses as to what is the right approach of
+        solving this. In the interview it can get a little tricky. I have consolidated all the variations here to act as a referral point of
+        all possible methods of doing it.
+        <ul>
+            <li><a href="#Container With Most Water">Container With Most Water</a></li>
+            <li><a href="#Trapping Rain Water">Trapping Rain Water</a></li>
+            <li><a href="#Largest Rectangle in Histogram">Largest Rectangle in Histogram</a></li>
+        </ul>
+        <div id="Container With Most Water">
+            <h3>Container With Most Water</h3>
+        You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+        Find two lines that together with the x-axis form a container, such that the container contains the most water.
+        Return the maximum amount of water a container can store.
+        Notice that you may not slant the container.
+        Refer to the problem statement here : <a>https://leetcode.com/problems/container-with-most-water/</a>.
+        <main>
+            <figure>
+                <figcaption>Container with most water</figcaption>
+                <pre>
+                    <code>
+        class Solution {
+            public int maxArea(int[] height) {
+                int result = -1;
+                int left = 0;
+                int right = height.length-1;
+                while(left &ltright) {
+                    int temp = (right-left)*Math.min(height[left],height[right]);
+                    if(temp > result) {
+                        result = temp;
+                    }
+                    if(height[left] &ltheight[right]) {
+                        left++;
+                    } else {
+                        right--;
+                    }
+                }
+                return result;
+            }
+        }
+
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        </div>
+        <div id="Trapping Rain Water">
+            <h3>Trapping Rain Water</h3>
+            Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+            Refer to the problem statement here : <a>https://leetcode.com/problems/trapping-rain-water/</a>
+            <main>
+                <figure>
+                    <figcaption>Water trapping</figcaption>
+                    <pre>
+                    <code>
+        class Solution {
+            public int trap(int[] height) {
+                int[] maxLeft = new int[height.length];
+                int result = 0;
+                maxLeft[0] = height[0];
+                for(int i = 1;i &lt height.length;i++) {
+                    maxLeft[i] = Math.max(maxLeft[i-1],height[i]);
+                }
+                int maxRight = height[height.length-1];
+                for(int i =height.length-2;i>=0;i--) {
+                    maxRight = Math.max(height[i],maxRight);
+                    result += Math.min(maxLeft[i],maxRight)-height[i];
+                }
+
+
+                return result;
+            }
+        }
+                    </code>
+                </pre>
+                </figure>
+            </main>
+        </div>
+        <div id="Largest Rectangle in Histogram">
+            <h3>Largest Rectangle in Histogram</h3>
+            Refer to the problem statement here : <a>https://leetcode.com/problems/largest-rectangle-in-histogram/</a>
+            <main>
+                <figure>
+                    <figcaption>Water trapping</figcaption>
+                    <pre>
+                        <code>
+            class Solution {
+                public int largestRectangleArea(int[] heights) {
+                    Stack &ltInteger> st = new Stack<>();
+                    int i =0;
+                    int maxArea = 0;
+                    while(i&ltheights.length) {
+                        if(st.isEmpty() || heights[st.peek()]<=heights[i] ) {
+                            st.add(i++);
+                        }
+                        else{
+                            int hidx = st.pop();
+                            int area = heights[hidx] *(st.isEmpty()?i:i-1-st.peek());
+                            maxArea = maxArea>area?maxArea:area;
+                        }
+                    }
+                    while(!st.isEmpty()) {
+                        int hidx = st.pop();
+                        int area = heights[hidx] *(st.isEmpty()?i:i-1-st.peek());
+                        maxArea = maxArea>area?maxArea:area;
+                    }
+                    return maxArea;
+
+                }
+            }
+                        </code>
+                    </pre>
+                </figure>
+            </main>
+
+        </div>
+    </div>
+</div>
+</body>

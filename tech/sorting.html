@@ -310,6 +310,19 @@
             input[idx] = temp;
             return i-1;
         }
+        <i>// New and improved partition method which is very easy write and takes care of the edge cases like a charm.</i>
+        public static int  partitionV2(int[] arr, int low, int high) {
+            int pivot = arr[low];
+            while(low &lt high) {
+                while (low < high && arr[high] >= pivot) high--;
+                arr[low] = arr[high];
+                while (low < high && arr[low] <= pivot) low++;
+                arr[high] = arr[low];
+            }
+            arr[low] = pivot;
+            return low;
+
+        }
                     </code>
                 </pre>
                 </figure>
