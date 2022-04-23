@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+    <link href="../assets/style.css" rel="stylesheet">
+    <script src="../assets/menu.js"></script>
+</head>
+<body style="height:100%">
+<header>
+    <title>Important points on DSA approaches</title>
+    <h1>Important points in DSA problem approaches</h1>
+</header>
+<div class="div_main">
+    <div class="div_left">
+        <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
+            <script>
+            includeHTML();
+
+            </script>
+        </div>
+    </div>
+    <div class="div_right">
+    <ul>
+       <li>If you want to make sure that a pair is not counted twice when traversing through an array, populate the array while traversing instead of traversing an already populated array</li>
+        <li>XOR basics : 1 is a flipper, 0 is a mirror. Matching values are nullified and different values are flagged. </li>
+        <li>">>>" unsigned right shift. Does not populate the MSB in the new bit positions. </li>
+        <li>Modulo operator basics :
+            1. Addition property : (A + B) mod C = (A mod C + B mod C)mod C</br>
+            2. Mod of a -ve number : (-A) mod C = (-A + C)mod C</br>
+            2. Multiplication property of modular arithmetic: (A * B) mod C = (A mod C * B mod C) mod C</br>
+            3. Exponentiation property: A^B mod C = ( (A mod C)^B ) mod C</br>
+            </li>
+        <li>1+2+3+...+n = (n+1)*n/2</li>
+        <li>A DAG always has at least 1 topological order</li>
+        <li>char[] arr = st.toCharArray()      // where st is any string</li>
+        <li>String top = new String(st,i,n);            // where i is the offset, and n is the length</li>
+        <li>HashMap/HashSet can not have array as key. because internally the hashcode() and equals() methods of array uses the reference and not the content of the array.</li>
+        <li>Arrays.sort(nums, i + 1, n);     //this sorts the array within the range</li>
+        <li>List &ltInteger> list1 = Arrays.stream(arr).boxed().collect(Collectors.toList());  // convert arrays to list</li>
+        <li>int[] arr1 = list1.stream().mapToInt(Integer::intValue).toArray();  //convert list to arrays</li>
+    </ul>
+        List of good questions from leetcode for each topic:
+        <h5>Counting</h5>
+        <ul>
+            <li><a href="https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/">1497. Check If Array Pairs Are Divisible by k</a>: nice use of modulo properties.</li>
+            <li><a href="https://leetcode.com/problems/majority-element-ii/">229. Majority Element II</a>: Great explanation of Boyer-Moore's approach</li>
+            <li><a href="https://leetcode.com/problems/distant-barcodes/">1054. Distant Barcodes</a>: How to arrange elements alternately</li>
+            <li><a href="https://leetcode.com/problems/equal-sum-arrays-with-minimum-number-of-operations/">1775. Equal Sum Arrays With Minimum Number of Operations</a>: nice greedy approach</li>
+            <li><a href="https://leetcode.com/problems/minimum-increment-to-make-array-unique/">945. Minimum Increment to Make Array Unique</a>: greedy again. nice approach</li>
+            <li><a href = "https://leetcode.com/problems/task-scheduler/">621. Task Scheduler</a></li>
+        </ul>
+        <h5>Graphs</h5>
+        <ul>
+            <li><a href="https://leetcode.com/problems/sum-of-distances-in-tree/">834. Sum of Distances in Tree</a></li>
+        </ul>
+
+    </div>
+</div>
+</body>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+    <link href="../assets/style.css" rel="stylesheet">
+    <script src="../assets/menu.js"></script>
+</head>
+<body style="height:100%">
+<header>
+    <title>Graph Algorithm: All source shortest path</title>
+    <h1>Graph Algorithm: All source shortest path</h1>
+</header>
+<div class="div_main">
+    <div class="div_left">
+        <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
+            <script>
+            includeHTML();
+            </script>
+        </div>
+    </div>
+    <div class="div_right">
+        <h3>Floyd Warshal's Algorithm</h3>
+        <p>There are many all source shortest path algorithms know like Johnson's, Floyd Warshall's, but I will focus on the latter only. </p>
+        <p>Floyd Warshall's is compute intensive algorithm. In each iteration of the algorithm, we try to find the shortest path, if exists, through a vertex in the graph.
+            It is a DP algorithm.One more iteration of this algo (over all the vertices) if updates the weights, then there exists a -ve cycle in the graph.</p>
+        <b>Complexity:</b>O(V^3)
+        <main>
+            <figure>
+                <figcaption>Floyd Warshall's</figcaption>
+                <pre>
+                    <code>
+        public static void floydWarshal(int[][] graph, int n) {
+            <i>// next is used to find the vertices in the shortest path at the end.</i>
+            int[][] next = new int[n][n];
+            for(int i = 0;i &lt n;i++) {
+                for(int j=0;j &lt n;j++) {
+                    if(graph[i][j] != INF){
+                        next[i][j] = j;
+                    }
+                }
+            }
+            for(int k =0;k &lt n;k++) {
+                for(int i = 0;i &lt n;i++) {
+                    for(int j=0;j &lt n;j++) {
+                        if(graph[i][j] > graph[i][k]+graph[k][j]) {
+                            graph[i][j] = graph[i][k]+graph[k][j];
+                            next[i][k] = j;
+                        }
+                    }
+                }
+            }
+        }
+                    </code>
+                </pre>
+            </figure>
+        </main>
+        Refer to the working example <a
+            href="https://github.com/coderlingo/algo-and-data-structures/blob/main/graph-algorithms/src/ShortestPath/all_source/FloydWarshal.java">here</a>
+    </div>
+</div>
+</body>
