@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head style="height:100%">
+    <link href="../assets/style.css" rel="stylesheet">
+    <script src="../assets/menu.js"></script>
+</head>
+<body style="height:100%">
+<header>
+    <title>Intervals and scheduling variations</title>
+    <h1>Intervals and scheduling variations</h1>
+</header>
+<div class="div_main">
+    <div class="div_left">
+        <div menu="../assets/menu.html" style="float: left;clear: left;text-align:center;">
+            <script>
+            includeHTML();
+            </script>
+        </div>
+    </div>
+    <div class="div_right">
+        <h3>Intervals</h3>
+        <p>Interval problems fall under 3 basic construct:</p>
+            <ul>
+                <li>1) Sort by start time: Sorting by start time is a great approach in problems where we want to find the overlaps. For example inserting an interval
+                in an already sorted list of intervals, merging overlapping intervals etc. In such problems, sorting by end time does not add any value to the solution we are aiming for.</li>
+                <li>2) Sort by end time: Sorting by end time is usually effective in problems where we want to find an optimized or min/max solution. For example remove min intervals to make list of intervals
+                    non-overlapping. In this problem we want to keep the intervals with smallest end time because that greedily ensures that there are fewer and subsequently no overlaps.</li>
+                <li>3) Sometime we would want to take the start and end time apart and sort them individually. This method comes handy in cases when we want to determine maximum intervals that overlap in the list.
+                </li>
+            </ul>
+    <h3>Job Scheduling</h3>
+        <p>There are 3 common types of job scheduling problems listed below:</p>
+        <ul>
+            <li>1) End time by which the job should be done and the profit for each</li>
+            <li>2) Start and end or duration of each job and the profits from each.  Jobs need to be scheduled without overlap.</li>
+            <li>3) Start and end time ( here profit is assumned to be one for all). This is basically an interval problem from sequence number 2 above. </li>
+        </ul>
+    </div>
+</div>
+</body>

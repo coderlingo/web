@@ -19,25 +19,28 @@
         </div>
     </div>
     <div class="div_right">
-    <ul>
-       <li>If you want to make sure that a pair is not counted twice when traversing through an array, populate the array while traversing instead of traversing an already populated array</li>
-        <li>XOR basics : 1 is a flipper, 0 is a mirror. Matching values are nullified and different values are flagged. </li>
-        <li>">>>" unsigned right shift. Does not populate the MSB in the new bit positions. </li>
-        <li>Modulo operator basics :
-            1. Addition property : (A + B) mod C = (A mod C + B mod C)mod C</br>
-            2. Mod of a -ve number : (-A) mod C = (-A + C)mod C</br>
-            2. Multiplication property of modular arithmetic: (A * B) mod C = (A mod C * B mod C) mod C</br>
-            3. Exponentiation property: A^B mod C = ( (A mod C)^B ) mod C</br>
+        <ul>
+            <li>If you want to make sure that a pair is not counted twice when traversing through an array, populate the array while traversing instead of traversing an already populated array</li>
+            <li>XOR basics : 1 is a flipper, 0 is a mirror. Matching values are nullified and different values are flagged. </li>
+            <li>">>>" unsigned right shift. Does not populate the MSB in the new bit positions. </li>
+            <li>Modulo operator basics :
+                1. Addition property : (A + B) mod C = (A mod C + B mod C)mod C</br>
+                2. Mod of a -ve number : (-A) mod C = (-A + C)mod C</br>
+                2. Multiplication property of modular arithmetic: (A * B) mod C = (A mod C * B mod C) mod C</br>
+                3. Exponentiation property: A^B mod C = ( (A mod C)^B ) mod C</br>
             </li>
-        <li>1+2+3+...+n = (n+1)*n/2</li>
-        <li>A DAG always has at least 1 topological order</li>
-        <li>char[] arr = st.toCharArray()      // where st is any string</li>
-        <li>String top = new String(st,i,n);            // where i is the offset, and n is the length</li>
-        <li>HashMap/HashSet can not have array as key. because internally the hashcode() and equals() methods of array uses the reference and not the content of the array.</li>
-        <li>Arrays.sort(nums, i + 1, n);     //this sorts the array within the range</li>
-        <li>List &ltInteger> list1 = Arrays.stream(arr).boxed().collect(Collectors.toList());  // convert arrays to list</li>
-        <li>int[] arr1 = list1.stream().mapToInt(Integer::intValue).toArray();  //convert list to arrays</li>
-    </ul>
+            <li>1+2+3+...+n = (n+1)*n/2</li>
+            <li>A DAG always has at least 1 topological order</li>
+            <li>char[] arr = st.toCharArray()      // where st is any string</li>
+            <li>String top = new String(st,i,n);            // where i is the offset, and n is the length</li>
+            <li>HashMap/HashSet can not have array as key. because internally the hashcode() and equals() methods of array uses the reference and not the content of the array.</li>
+            <li>Arrays.sort(nums, i + 1, n);     //this sorts the array within the range</li>
+            <li>List &ltInteger> list1 = Arrays.stream(arr).boxed().collect(Collectors.toList());  // convert arrays to list</li>
+            <li>int[] arr1 = list1.stream().mapToInt(Integer::intValue).toArray();  //convert list to arrays</li>
+            <li>Arrays.sort(words, Comparator.comparingInt(String::length)); <\b>
+                or Arrays.sort(words, Comparator.comparingInt(String::length).reversed());</li>
+            <li> String[] strArray = Arrays.stream(intArray).mapToObj(String::valueOf).toArray(String[]::new);</li>
+        </ul>
         List of good questions from leetcode for each topic:
         <h5>Counting</h5>
         <ul>
